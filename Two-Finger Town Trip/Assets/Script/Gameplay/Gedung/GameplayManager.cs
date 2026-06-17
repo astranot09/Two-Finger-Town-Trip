@@ -19,7 +19,12 @@ public class GameplayManager : MonoBehaviour
     public int ObstacleType => obstacleType;
 
 
+    [Header("Score")]
+    [SerializeField] private int score;
+    public float Score => score;
 
+
+    [Header("Timer")]
     [SerializeField] private float timerType = 10f;
     [SerializeField] private float currTimerType = 0;
 
