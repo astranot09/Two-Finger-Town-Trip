@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 2322611814906930565}
   m_Layer: 0
   m_Name: GedungJenis1
-  m_TagString: Paket
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

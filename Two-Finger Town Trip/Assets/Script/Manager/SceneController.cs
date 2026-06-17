@@ -17,10 +17,12 @@ public class SceneController : MonoBehaviour
 
     public void MainMenuScene()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("MainMenu");
     }
     public void GameScene()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("GameplayScene");
     }
 

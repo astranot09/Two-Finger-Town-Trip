@@ -6,7 +6,8 @@ TagManager:
   tags:
   - Spawner
   - Delete
-  - Paket
+  - End
+  - Damage
   layers:
   - Default
   - TransparentFX
