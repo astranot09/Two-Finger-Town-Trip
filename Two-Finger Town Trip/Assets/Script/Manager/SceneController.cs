@@ -19,7 +19,10 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
-
+    public void GameScene()
+    {
+        SceneManager.LoadScene("GameplayScene");
+    }
 
     public void ExitGame()
     {

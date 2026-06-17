@@ -18,4 +18,27 @@ public class GameplayManager : MonoBehaviour
     public float ObstacleSpeed => obstacleSpeed;
     public int ObstacleType => obstacleType;
 
+
+
+    [SerializeField] private float timerType = 10f;
+    [SerializeField] private float currTimerType = 0;
+
+    private void FixedUpdate()
+    {
+        if(currTimerType <= 0)
+        {
+            currTimerType = timerType;
+            switch (obstacleType)
+            {
+                case 1:
+                    Debug.Log("Ganti");
+                    //obstacleType = 2; 
+                    break;
+                //case 2:
+                //    obstacleType = 1; break;
+            }
+        }
+        currTimerType -= Time.deltaTime;
+    }
+
 }

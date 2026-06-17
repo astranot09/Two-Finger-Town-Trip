@@ -34,7 +34,15 @@ public class GedungScript : MonoBehaviour
 
         if (collision.CompareTag("Delete") && sudahSpawn)
         {
-            Destroy(gameObject);
+            if (transform.parent != null)
+            {
+                Destroy(transform.parent.gameObject);
+            }
+            else
+            {
+                // Kalau ternyata ga punya parent, hancurin dirinya sendiri aja
+                Destroy(gameObject);
+            }
         }
     }
     private void OnApplicationQuit()
