@@ -2,16 +2,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class ComicManager : MonoBehaviour
 {
     [Header("Comic Panel Settings")]
+    [SerializeField] private CanvasGroup allCanvas;
     [SerializeField] private List<GameObject> panelList;
     [SerializeField] private float panelFadeDuration = 0.5f;
     [SerializeField] private float delayBetweenPanels = 0.8f;
 
     [Header("Transition Settings")]
     [SerializeField] private float delayBeforeSceneTransition = 1.0f;
+    [SerializeField] private float screenFadeDuration = 0.5f; // Durasi layar menggelap saat pindah scene
+    private bool comicFinished = false;
+    private bool isTransitioning = false; // Mencegah double-tap saat transisi
 
     private void Start()
     {
@@ -61,12 +66,32 @@ public class ComicManager : MonoBehaviour
         }
 
         // Setelah seluruh sekuens komik selesai, jalankan transisi scene
-        comicSequence.OnComplete(() => StartCoroutine(TransitionToMainMenu()));
+        comicSequence.OnComplete(() => comicFinished = true);
+    }
+
+
+    public void GoToMainMenu(InputAction.CallbackContext ctx)
+    {
+        // Hanya jalan jika komik selesai, tombol ditekan, dan TIDAK sedang dalam proses transisi
+        if (ctx.performed && comicFinished && !isTransitioning)
+        {
+            isTransitioning = true; // Kunci input agar tidak terjadi spam klik
+            StartCoroutine(TransitionToMainMenu());
+        }
     }
 
     private IEnumerator TransitionToMainMenu()
     {
+        // 1. Fade out seluruh UI komik secara halus (alpha menjadi 0)
+        if (allCanvas != null)
+        {
+            allCanvas.DOFade(0f, screenFadeDuration);
+        }
+
+        // 2. Beri sedikit jeda waktu tunggu agar animasinya selesai
         yield return new WaitForSeconds(delayBeforeSceneTransition);
+
+        // 3. Pindah ke Scene Main Menu
         SceneController.instance.MainMenuScene();
     }
 }

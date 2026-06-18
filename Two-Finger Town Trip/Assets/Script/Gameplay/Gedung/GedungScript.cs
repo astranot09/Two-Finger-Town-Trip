@@ -49,4 +49,8 @@ public class GedungScript : MonoBehaviour
     {
         destroyIt = true;
     }
+    private void OnDestroy()
+    {
+        destroyIt = true;
+    }
 }

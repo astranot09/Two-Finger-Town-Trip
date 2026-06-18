@@ -13,12 +13,16 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-
+    [Header("Score Setting")]
     [SerializeField] private TMP_Text scoreText;
 
     [Header("Lose Setting")]
     [SerializeField] private GameObject losePanel;
     [SerializeField] private TMP_Text lastScoreText;
+
+    [Header("SpeedUp Setting")]
+    [SerializeField] private GameObject speedUpPrefab;
+    [SerializeField] private Transform speedUpSpawner;
 
     public void UpdateScore()
     {
@@ -32,5 +36,8 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0f;
         lastScoreText.text = GameplayManager.instance.Score.ToString();
     }
-
+    public void SpeedUp()
+    {
+        Instantiate(speedUpPrefab, speedUpSpawner.position, Quaternion.identity, speedUpSpawner);
+    }
 }

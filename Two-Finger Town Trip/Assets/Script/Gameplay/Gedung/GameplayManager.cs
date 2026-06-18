@@ -55,6 +55,8 @@ public class GameplayManager : MonoBehaviour
         currScoreTime = scoreTime;
         currlevelGapTime = levelGapTime;
         currTimerType = timerType;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
     }
 
     private void Update()
@@ -108,6 +110,7 @@ public class GameplayManager : MonoBehaviour
         if (currlevelGapTime <= 0)
         {
             currlevelGapTime = levelGapTime;
+            UIManager.instance.SpeedUp();
             level++;
         }
     }
