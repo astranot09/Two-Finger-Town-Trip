@@ -42,6 +42,7 @@ public class PlayerScript : MonoBehaviour
 
     public void TakingDamage(float damage)
     {
+        if(SceneController.instance.OnTransition) return;
         currHealth -= damage;
         if(currHealth <= 0)
         {

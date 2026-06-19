@@ -8,6 +8,7 @@ TagManager:
   - Delete
   - End
   - Damage
+  - Transition
   layers:
   - Default
   - TransparentFX
