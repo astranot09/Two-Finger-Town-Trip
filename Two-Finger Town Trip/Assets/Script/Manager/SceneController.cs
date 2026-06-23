@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
 {
@@ -22,21 +23,33 @@ public class SceneController : MonoBehaviour
     public void MainMenuScene()
     {
         Time.timeScale = 1.0f;
-        StartCoroutine(LoadLevel("MainMenu"));
+        LoadLevel("MainMenu");
     }
     public void GameScene()
     {
         Time.timeScale = 1.0f;
-        StartCoroutine(LoadLevel("GameplayScene"));
+        LoadLevel("GameplayScene");
     }
+
+    public void RestartScene()
+    {
+        Time.timeScale = 1.0f;
+        LoadLevel("GameplayScene");
+    }
+
 
     public void ExitGame()
     {
         Application.Quit();
     }
 
+    public void LoadLevel(string name)
+    {
+        if(OnTransition) return;
+        StartCoroutine(LoadLevelCoroutine(name));
+    }
 
-    IEnumerator LoadLevel(string name)
+    IEnumerator LoadLevelCoroutine(string name)
     {
         OnTransition = true;
         if (animator == null || animator.gameObject == null)

@@ -34,6 +34,8 @@ public class UIManager : MonoBehaviour
     {
         losePanel.SetActive(true);
         Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         lastScoreText.text = GameplayManager.instance.Score.ToString();
     }
     public void SpeedUp()

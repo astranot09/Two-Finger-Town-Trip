@@ -15,6 +15,11 @@ public class ButtonManager : MonoBehaviour
         SceneController.instance.GameScene();
     }
 
+    public void RestartGame()
+    {
+        SceneController.instance.RestartScene();
+    }
+
     public void Setting()
     {
         settingPanel.SetActive(!settingPanel.activeSelf);
@@ -27,7 +32,6 @@ public class ButtonManager : MonoBehaviour
     public void Paused()
     {
         pausePanel.SetActive(!pausePanel.activeSelf);
-
         if (pausePanel.activeSelf)
         {
             // Correct way to lock the cursor in Unity
@@ -38,6 +42,10 @@ public class ButtonManager : MonoBehaviour
         }
         else
         {
+            if (settingPanel.activeSelf)
+            {
+                settingPanel.SetActive(false);
+            }
             // Correct way to unlock the cursor
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false; // Optional: Hides the mouse again for gameplay
